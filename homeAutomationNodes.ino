@@ -6,7 +6,7 @@
 
 
 const char* ssid     = "WLAN_8F";
-const char* password = "pladur13lol";
+const char* password = "";
 
 const char* host = "192.168.0.20";
 const int httpPort = 80;
