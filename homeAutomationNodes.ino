@@ -5,13 +5,13 @@
 #include <Bounce2.h>
 
 
-const char* ssid     = "WLAN_8F";
-const char* password = "pladur13lol";
+const char* ssid     = "";
+const char* password = "";
 
 const char* host = "192.168.0.20";
 const int httpPort = 80;
 
-const int node = 1;
+const int node = 3;
 
 
 const int  buttonPin = 4;
@@ -67,7 +67,7 @@ void setup() {
 
   //set static ip part
   WiFi.config(
-    IPAddress(192, 168, 0, 21),
+    IPAddress(192, 168, 0, 23),
     IPAddress(192, 168, 0, 1),
     IPAddress(255, 255, 255, 0)
   );
@@ -88,25 +88,6 @@ void setup() {
 
   server.begin();
 
-}
-
-void loop() {
-
-  handleInput();
-
-  server.handleClient();
-}
-
-void handleInput() {
-
-  debouncer.update();
-
-  if ( debouncer.rose() ) {
-    buttonState = !buttonState;
-    digitalWrite(relayPin, buttonState);
-    sprintf(msg, "{\"out\": \"%d\", \"state\": \"%d\"}", node, buttonState);
-    sendData(msg);
-  }
 }
 
 void sendData(String data) {
@@ -169,4 +150,24 @@ void sendData(String data) {
 
   }
 }
+
+void handleInput() {
+
+  debouncer.update();
+
+  if ( debouncer.rose() ) {
+    buttonState = !buttonState;
+    digitalWrite(relayPin, buttonState);
+    sprintf(msg, "{\"out\": \"%d\", \"state\": \"%d\"}", node, buttonState);
+    sendData(msg);
+  }
+}
+
+void loop() {
+
+  handleInput();
+
+  server.handleClient();
+}
+
 
