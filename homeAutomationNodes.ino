@@ -5,7 +5,11 @@
 #include <Bounce2.h>
 
 
+<<<<<<< HEAD
 const char* ssid     = "";
+=======
+const char* ssid     = "WLAN_8F";
+>>>>>>> 4f70f7649777cac22cf594b9a9c81cf8b70b8772
 const char* password = "";
 
 const char* host = "192.168.0.20";
